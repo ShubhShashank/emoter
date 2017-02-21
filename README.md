@@ -120,7 +120,11 @@ To use Emote's web interface and mass analyzer feature, start run.py, and go to 
 
 Emoter chatbot agents right now only work as scripts through CLI. 
 
-Use emoter.py as a template to write in custom conversations / databases (documented within comments in the code), or run emoter_fitness_coach.py to demo the sample persona 'fitness coach'.
+Use emoter.py as a template to write in custom conversations / databases (documented within comments in the code).
+
+<img src="/screenshots/emoter-template-conversations-screenshot?raw=true" width="600px" />
+
+Run emoter_fitness_coach.py to demo the sample persona 'fitness coach'.
 
 <img src="/screenshots/emoter_fitness_coach_start_screenshot.png?raw=true" width="600px" />
 
