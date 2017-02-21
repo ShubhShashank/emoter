@@ -117,11 +117,11 @@ returns the strongest tone value:
 ```
 And so
 ```
-result[0][1][0]
+result[0][1]
 ```
-returns the 2nd strongest tone value:
+returns the 2nd strongest tone classification-value pair:
 ```
-'emphatic'
+('emphatic', 14.7)
 ```
 and so on for all 26 base tones, in descending order of value. 
 
@@ -161,6 +161,7 @@ Also, see the file 'alice_classification_training_sample.txt' to see passages fr
 * Emoter agents have no ability to remember or learn new things
 * Emoter agents only search for one matching database, not multiple. If the threshold fails, then Emoter will just search the entire database.
 * No API has been started yet for Emoter agents; you can only chat via command line interface right now
+* Conversations / texts are just lists of tuples, which is too limiting of a data structure
 
 
 ### Future Plans
@@ -171,6 +172,7 @@ Also, see the file 'alice_classification_training_sample.txt' to see passages fr
 * Build out a full RESTful API for Emote, and offer plans for developers / businesses for API calls via Emoter website
 * Develop a GUI web interface to create / customize Emoter chatbot agents
 * Fix database matching to multiple (going in descending order) instead of just one
+* Rework conversations / texts data structure into SQL, with added frequency / weight values for more complexity
 * Implement short-term memory functionality for Emoter agents
 * Improve sequence matching by incorporating automatic addition of synonyms for words and phrases
 * Build a Unity SDK for Emote / Emoter

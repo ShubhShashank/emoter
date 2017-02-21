@@ -24,7 +24,7 @@ setup(
     # https://packaging.python.org/en/latest/single_source_version.html
     version='0.5.0',
 
-    description='Emoter is an emphatic chatbot system integrated with a sentiment analyzer (Emote) to empower it with a "higher level of thinking."',
+    description="A chatbot system integrated with a sentiment analyzer library (Emote) that is able to empathize with users.",
     long_description=long_description,
 
     # The project's main homepage.
@@ -61,7 +61,7 @@ setup(
     ],
 
     # What does your project relate to?
-    keywords= 'AI', 'chatbots', 'emotion', 'sentiment', 'NLP',
+    keywords= 'AI artifcial intelligence empathy chatbots emotion sentiment NLP',
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
