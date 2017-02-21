@@ -76,7 +76,7 @@ Put the pickle file in the /data directory of Emoter, or build it yourself with 
 
 Emote can be run as a script with a CLI, or imported as a module / library. Run.py starts Emote's web app interface, where you can demo the sentiment analysis and mass analyze CSV files. Emoter.py contains the base template for a blank chatbot agent, and currently can only be run as a script. Emoter_trainer_wrapper.py is meant to be used to train and test Emote's database, but is unfinished and not functional.
 
-Emote's basic API..
+Emote's (currently) very basic API..
 
 Start by importing emote.
 ```
