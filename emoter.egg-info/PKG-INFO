@@ -1,7 +1,7 @@
 Metadata-Version: 1.1
 Name: emoter
 Version: 0.5.0
-Summary: Emoter is an emphatic chatbot system integrated with a sentiment analyzer (Emote) to empower it with a "higher level of thinking."
+Summary: A chatbot system integrated with a sentiment analyzer library (Emote) that is able to empathize with users.
 Home-page: http://emoter.me
 Author: Johnny Dunn
 Author-email: jdunnfive@gmail.com
