@@ -104,6 +104,15 @@ returns the strongest tone value:
 ```
 100.0
 ```
+And so
+```
+result[0][1][0]
+```
+returns the 2nd strongest tone value:
+```
+'emphatic'
+```
+and so on for all 26 base tones, in descending order of value. 
 
 To use Emote's web interface and mass analyzer feature, start run.py, and go to localhost:5000 in your browser:
 
