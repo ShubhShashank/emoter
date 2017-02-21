@@ -1,6 +1,6 @@
 # Emoter
 
-[emoter.me](http://emoter.me "Emoter Homepage")
+[emoter.me](http://emoter.me "Emoter Homepage") (The information on this website is not up to date, as Emoter has gone open-source)
 
 [try-emote.ml](http://try-emote.ml "Emote Web Demo")
 
@@ -55,6 +55,11 @@ Then, download the necessary corpus to use TextBlob:
 ```
 python -m textblob.download_corpora
 ```
+Because GitHub has a file upload limitation, and to save space, I've uploaded a pickled version of the probability classifier, so that it doesn't have to rebuild every time Emote is reloaded. 
+
+[https://www.mediafire.com/?c18ll802ynb7s3c](https://www.mediafire.com/?c18ll802ynb7s3c"Download pickled classifier")
+
+Put the pickle file in the /data directory of Emoter, or build it yourself with your own database by running emote.py. 
 
 ## Using Emote / Emoter
 
@@ -81,7 +86,7 @@ result[0][0]
 ```
 returns the strongest tone classification-value pair:
 ```
-('emphatic', 100.0)
+('desire', 100.0)
 ```
 and
 ```
@@ -139,6 +144,7 @@ Also, see the file 'alice_classification_training_sample.txt' to see passages fr
 * Database is too young (<8000 classifications) to be consistently accurate
 * Emote / Emoter agents are only deployable with Python
 * Emoter agents have no ability to remember or learn new things
+* Emoter agents only search for one matching database, not multiple. If the threshold fails, then Emoter will just search the entire database.
 
 
 ### Future Plans
@@ -148,6 +154,7 @@ Also, see the file 'alice_classification_training_sample.txt' to see passages fr
 * Develop automated way of training databases (described in architecture flowchart in /docs)
 * Build out a full RESTful API for Emote, and offer plans for developers / businesses for API calls via Emoter website
 * Develop a GUI web interface to create / customize Emoter chatbot agents
+* Fix database matching to multiple (going in descending order) instead of just one
 * Implement short-term memory functionality for Emoter agents
 * Improve sequence matching by incorporating automatic addition of synonyms for words and phrases
 * Build a Unity SDK for Emote / Emoter
