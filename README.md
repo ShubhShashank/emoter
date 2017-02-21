@@ -124,6 +124,8 @@ Use emoter.py as a template to write in custom conversations / databases (docume
 
 <img src="/screenshots/emoter-template-conversations-screenshot.png?raw=true" width="600px" />
 
+<img src="/screenshots/emoter-fitness-coach-conversations-screenshot.png?raw=true" width="600px" />
+
 Run emoter_fitness_coach.py to demo the sample persona 'fitness coach'.
 
 <img src="/screenshots/emoter_fitness_coach_start_screenshot.png?raw=true" width="600px" />
