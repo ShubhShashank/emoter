@@ -4,7 +4,7 @@
 
 [try-emote.ml](http://try-emote.ml "Emote Web Demo")
 
-This repository contains the full source code for a sentiment analyzer library called Emote, and its companion program Emoter, a chatbot intergrated with Emote that allows it to empathize with the users talking to it. Emote is based off TextBlob's naive Bayes probability system, and is able to detect reasonably accurate values for 3-6 different emotional tones, from a total range of 36 classifications. Emoter chatbot agents use Emote to analyze user messages, then choose an emotionally appropriate response from interchangable "conversations", based around designed personalities / personas. This project was (or, is still currently being) developed for my undergraduate thesis at Parsons School of Design.
+This repository contains the full source code for a sentiment analyzer library called Emote, and its companion program Emoter, a chatbot intergrated with Emote that allows it to empathize with the users talking to it. Emote is based off TextBlob's (NLTK's) naive Bayes probability system, and is able to detect reasonably accurate values for 3-6 different emotional tones, from a total range of 36 classifications. Emoter chatbot agents use Emote to analyze user messages, then choose an emotionally appropriate response from interchangable "conversations", based around designed personalities / personas. This project was (or, is still currently being) developed for my undergraduate thesis at Parsons School of Design.
 
 
 ## Note
