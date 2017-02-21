@@ -36,6 +36,17 @@ Emoter is a basic but functional chatbot platform intergrated with Emote, in ord
 Both Emote and Emoter can be run offline.
 
 
+### Full List of Emotional Tone Classifications
+
+```
+Positive, negative; love, hate; joy, anger; certainty, confusion; amusement, boredom; intensity, regret; challenging, agreeable; desire, calm; sarcastic, emphatic; instructive, accusative; admiration, inquisitive; modest, pride; ambivalence, vulgarity
+```
+
+```
+10 additional tones can be derived from the 26 base tones through combining associations: obedience, assertiveness; attraction, disgust; informative, malevolent; anxiety, excitement; hopeful, horror.
+```
+
+
 ### Installing
 
 Once you create your virtual environment, run the setup file or install the dependencies via pip. 
@@ -133,17 +144,6 @@ Run emoter_fitness_coach.py to demo the sample persona 'fitness coach'.
 <img src="/screenshots/emoter_demo_3.png?raw=true" width="600px" />
 
 
-### Full List of Emotional Tone Classifications
-
-```
-Positive, negative; love, hate; joy, anger; certainty, confusion; amusement, boredom; intensity, regret; challenging, agreeable; desire, calm; sarcastic, emphatic; instructive, accusative; admiration, inquisitive; modest, pride; ambivalence, vulgarity
-```
-
-```
-10 additional tones can be derived from the 26 base tones through combining associations: obedience, assertiveness; attraction, disgust; informative, malevolent; anxiety, excitement; hopeful, horror.
-```
-
-
 ### Training / Adding Your Own Database
 
 Follow this quick visual guide to understand how the base corpus has been trained.
@@ -160,6 +160,7 @@ Also, see the file 'alice_classification_training_sample.txt' to see passages fr
 * Emote / Emoter agents are only deployable with Python
 * Emoter agents have no ability to remember or learn new things
 * Emoter agents only search for one matching database, not multiple. If the threshold fails, then Emoter will just search the entire database.
+* No API has been started yet for Emoter agents; you can only chat via command line interface right now
 
 
 ### Future Plans
