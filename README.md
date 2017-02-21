@@ -9,7 +9,7 @@ This repository contains the full source code for a sentiment analyzer library c
 
 ## Note
 
-This is a student project that is still in development. It is also the first library I've developed, and the most ambitious project I've done yet. I don't claim this to be the best or most optimal code (there are definitely some changes that need to be made), but I think it does work well enough to demonstrate basic proof-of-concept of an important but often neglected idea in AI: higher level thinking, and empathy. Emote / Emoter are open-sourced under the MIT License. The back end code (outside the libraries and database) totals only around ~1500 lines right now, so many features are lacking still. I've mapped out full design specs in diagrams located in the /docs directory.
+This is a student project that is still in development. It is also the first library I've developed, and the most ambitious project I've done yet. I don't claim this to be the best or most optimal code (there are definitely some changes that need to be made, and I need to go back and make more comments in the code), but I think it does work well enough to demonstrate basic proof-of-concept of an important but often neglected idea in AI: higher level thinking, and empathy. Emote / Emoter are open-sourced under the MIT License. The back end code (outside the libraries and database) totals only around ~1500 lines right now, so many features are lacking still. I've mapped out full design specs in diagrams located in the /docs directory.
 
 ### Screenshots
 
