@@ -217,6 +217,15 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 [http://www.julianjaynes.org/evidence_summary.php/](http://www.julianjaynes.org/evidence_summary.php/)
 
+## Credits
+
+* TextBlob
+* NLTK
+* NumPy / SciPy
+* scikit-learn
+* Flask
+* MetroUI (for HTML / CSS template)
+
 
 ## List of Texts / Sources Used in Database (Incomplete)
 
