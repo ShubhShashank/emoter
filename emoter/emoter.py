@@ -16,6 +16,8 @@ from collections import OrderedDict
 from difflib import SequenceMatcher
 from string import punctuation
 
+import numpy as np    
+
 # Import emote library
 from emote import emote
 
@@ -128,52 +130,64 @@ def getInput(message):
 
 
 def trainDatabase():
-   global texts_all; global texts_encouragement_needed; global texts_criticism_needed; global texts_questions; global texts_facts;  global texts_apologetic;
-   global texts_tasks; global texts_greetings; global texts_salutations;
+    global texts_all; global texts_encouragement_needed; global texts_criticism_needed; global texts_questions; global texts_facts;  global texts_apologetic;
+    global texts_tasks; global texts_greetings; global texts_salutations;
    
-   # See emoter_fitness_coach.py for an example on conversation texts
-   # Texts should be a list of tuples. First element of the tuple should be a user message, and the second element is the paired bot response.
-   # Add more conversations / texts as needed for every Emoter agent persona
+    # See emoter_fitness_coach.py for an example on conversation texts
+    # Texts should be a list of tuples. First element of the tuple should be a user message, and the second element is the paired bot response.
+    # Add more conversations / texts as needed for every Emoter agent persona
 
-   texts_encouragement_needed = [
+    texts_encouragement_needed = [
 
                                 ]  
                          
-   texts_criticism_needed = [
+    texts_criticism_needed = [
 
                             ]
 
-   texts_questions = [
+    texts_questions = [
 
                      ]
 
-   texts_facts =     [
+    texts_facts =     [
 
                      ]
 
-   texts_tasks =    [
+    texts_tasks =    [
                     
                     ]
 
 
-   texts_apologetic =    [
+    texts_apologetic =    [
 
                          ]
 
 
 
-   texts_greetings = [
+    texts_greetings = [
                    
                      ]
 
 
-   texts_salutations = [
+    texts_salutations = [
 
                        ]
    
-   texts_all['all'] = [
+    texts_all['all'] = [
     
                       ]
+
+    # Randomize conversations / texts with numpy, so the same response isn't found every time something is said (since multiple appropriate responses is desirable)
+    np.random.shuffle(texts_encouragement_needed)
+    np.random.shuffle(texts_criticism_needed)
+    np.random.shuffle(texts_questions)
+    np.random.shuffle(texts_facts)
+    np.random.shuffle(texts_tasks)
+    np.random.shuffle(texts_apologetic)
+    np.random.shuffle(texts_greetings)
+    np.random.shuffle(texts_salutations)
+    np.random.shuffle(texts_all['all'])
+
 
    texts_all['encouragement_needed'] = texts_encouragement_needed; texts_all['criticism_needed'] = texts_criticism_needed; texts_all['questions'] = texts_questions; texts_all['facts'] = texts_facts;
    texts_all['tasks'] = texts_tasks;  texts_all['apologetic'] = texts_apologetic; texts_all['greetings'] = texts_greetings; texts_all['salutations'] = texts_salutations
@@ -420,6 +434,15 @@ def searchDatabase(message, text_database_to_search, db_name):
     global default_eliminated
     print("\n\tText database to search (eliminate: greetings, salutations) : \n", "\t\t*", db_name, "*\n")
     # print("\n\tComparing with original message now..: ", message, "\n")
+
+    
+    # These thresholds and loops determine personalities of Emoter chatbots. How likely is an agent to give responses, based on designed personality traits?
+    # These thresholds should be edited and manipulated as needed per persona.
+    # Eventually, the thresholds need to scale inversely proportionally to the number of words in a given message. So if a user asks a question that's only 
+    # 3 words, for example, then the threshold should be higher because that requires a more specific answer. For longer messages, the threshold should 
+    # become smaller with scale, because the bot is less likely to find a matching response for longer sequences.
+
+
     lastVal = 0
     comparedVal = 0
     matchingStatement = ""

@@ -16,8 +16,10 @@ from collections import OrderedDict
 from difflib import SequenceMatcher
 from string import punctuation
 
+import numpy as np    
+
 # Import emote library
-from emote import *
+from emote import emote
 
 # Emoter script is not yet written as a library or module
 # emoterClassOn = False    # Is Emote being used as a library or modules? 
@@ -84,6 +86,10 @@ overall_conv_tone_lvls = {}
 # has the bot found a response yet? (while looping in database)
 response_found = False
 
+# has the bot eliminated the default greetings and salutations texts?
+default_eliminated = False
+
+
 def getInput(message):
     global firstTime
     global runningScript
@@ -91,10 +97,12 @@ def getInput(message):
     global num_total_messages
     global num_user_messages
     global response_found
+    global default_eliminated
 
     if runningScript == True:
         if firstTime == False:
             response_found = False
+            default_eliminated = False
             message = input('\n\n\t  Y O U: ')
             num_total_messages+=1
             num_user_messages+=1
@@ -122,10 +130,13 @@ def getInput(message):
 
 
 def trainDatabase():
-   global texts_all; global texts_encouragement_needed; global texts_criticism_needed; global texts_questions; global texts_facts;  global texts_apologetic;
-   global texts_tasks; global texts_greetings; global texts_salutations;
+    global texts_all; global texts_encouragement_needed; global texts_criticism_needed; global texts_questions; global texts_facts;  global texts_apologetic;
+    global texts_tasks; global texts_greetings; global texts_salutations;
    
-   texts_encouragement_needed = [
+    # See emoter_fitness_coach.py for an example on conversation texts
+    # Texts should be a list of tuples. First element of the tuple should be a user message, and the second element is the paired bot response.
+    # Add more conversations / texts as needed for every Emoter agent persona
+    texts_encouragement_needed = [
                      ("I don't really know about that."), ("Sure you can do it!"),
                      ("I don't have anyone in my life I can talk to.", "Well, that's exactly what I'm here for to help! Literally exactly the reason why I'm here is you. :)"), 
                      ("I don't really have anyone i can talk to about my problems.", "Well, that's exactly what I'm here for to help! Literally exactly the reason why I'm here is you. :)"),
@@ -139,10 +150,10 @@ def trainDatabase():
                      ("Can you help me feel better about myself?.", """I can definitely promise to do my best. Can you tell me anything more specific?""")
                     ]
                          
-   texts_criticism_needed = [
+    texts_criticism_needed = [
                      ]
 
-   texts_questions = [
+    texts_questions = [
                      ("What could you do to help me?", "I'm an advanced bot that actually thinks on a higher (although, completely emotional-based) level. So I can do a lot to help you. Ask me something else, or talk to one of the other Emoter agents."),
                      ("Do you think that you can help me out?", "I'm an advanced bot that actually thinks on a higher (although, completely emotional-based) level. So I can do a lot to help you. Ask me something else, or talk to one of the other Emoter agents."),
                      ("Can you do that for me?", "I'm an advanced bot that actually thinks on a higher (although, completely emotional-based) level. So I can do a lot to help you. Ask me something else, or talk to one of the other Emoter agents."),
@@ -165,10 +176,10 @@ def trainDatabase():
                      ("What can you do?", "Good question! I can do a lot of things. Specifically, I'm a fitness coach. And I have personal assistant capabilities! I'm awesome.")
                     ]
 
-   texts_facts =     [
+    texts_facts =     [
                      ]
 
-   texts_tasks =    [
+    texts_tasks =    [
                      ("I'd like to get some help with that.", "I'm an advanced bot that actually thinks on a higher (although, completely emotional-based) level. So I can do a lot to help you. Ask me something else, or talk to one of the other Emoter agents."),
                      ("I want to learn how to do more push-ups.", "Sounds good, I'll check in my database and give you some good tips on that."),
                      ("How can I learn how to eat better?", "I can definitely help you with that. Let me look that up in my database and get back to you in a few seconds.."),
@@ -189,7 +200,7 @@ def trainDatabase():
                     ]
 
 
-   texts_apologetic =    [
+    texts_apologetic =    [
                          ("I thought I had told you that already.", "Oh, I'm sorry. Don't blame me, blame my creator. Try again please?"),
                          ("I already said that.", "Oh, I'm sorry. Don't blame me, blame my creator. Try again please?"),
                          ("I already told you that.", "Oh, I'm sorry. Don't blame me, blame my creator. Try again please?")
@@ -197,7 +208,7 @@ def trainDatabase():
 
 
 
-   texts_greetings = [
+    texts_greetings = [
                      ("Who are you?", "I'm an Emoter agent, with the personality of a fitness coach. You can call me Sam!"),
                      ("What's your name?", "I'm an Emoter agent, with the personality of a fitness coach. You can call me Sam!"),
                      ("What is your name?", "I'm an Emoter agent, with the personality of a fitness coach. You can call me Sam!"),
@@ -221,7 +232,7 @@ def trainDatabase():
                     ]
 
 
-   texts_salutations = [
+    texts_salutations = [
                         ("Bye.", "Good-bye! Come again."),
                         ("Thank you.", "You're so welcome!"),
                         ("Thanks.", "You're so welcome!"),
@@ -239,7 +250,7 @@ def trainDatabase():
                         ("Alright then.", "Yup yup!"),
                        ]
    
-   texts_all['all'] = [
+    texts_all['all'] = [
                      ("Are you smart?", "Yes. Ask me another!"),
                      ("Do you think?", "Yes. Ask me another!"),
                      ("Do you eat?", "No. Ask me another!"),
@@ -270,10 +281,23 @@ def trainDatabase():
                      ("I already told you that.", "Oh, I'm sorry. Don't blame me, blame my creator. Try again please?")
                       ]
 
-   texts_all['encouragement_needed'] = texts_encouragement_needed; texts_all['criticism_needed'] = texts_criticism_needed; texts_all['questions'] = texts_questions; texts_all['facts'] = texts_facts;
-   texts_all['tasks'] = texts_tasks;  texts_all['apologetic'] = texts_apologetic; texts_all['greetings'] = texts_greetings; texts_all['salutations'] = texts_salutations
 
-   return texts_all
+    # Randomize conversations / texts with numpy, so the same response isn't found every time something is said (since multiple appropriate responses is desirable)
+    np.random.shuffle(texts_encouragement_needed)
+    np.random.shuffle(texts_criticism_needed)
+    np.random.shuffle(texts_questions)
+    np.random.shuffle(texts_facts)
+    np.random.shuffle(texts_tasks)
+    np.random.shuffle(texts_apologetic)
+    np.random.shuffle(texts_greetings)
+    np.random.shuffle(texts_salutations)
+    np.random.shuffle(texts_all['all'])
+
+
+    texts_all['encouragement_needed'] = texts_encouragement_needed; texts_all['criticism_needed'] = texts_criticism_needed; texts_all['questions'] = texts_questions; texts_all['facts'] = texts_facts;
+    texts_all['tasks'] = texts_tasks;  texts_all['apologetic'] = texts_apologetic; texts_all['greetings'] = texts_greetings; texts_all['salutations'] = texts_salutations
+
+    return texts_all
 
 
 def parseMessage(message, msg_results):
@@ -512,14 +536,24 @@ def findMsgResponse(message, msg_is_positive, msg_is_negative, msg_is_question, 
 def searchDatabase(message, text_database_to_search, db_name):
     global texts_all
     global response_found
+    global default_eliminated
     print("\n\tText database to search (eliminate: greetings, salutations) : \n", "\t\t*", db_name, "*\n")
     # print("\n\tComparing with original message now..: ", message, "\n")
+    
+
+    # These thresholds and loops determine personalities of Emoter chatbots. How likely is an agent to give responses, based on designed personality traits?
+    # These thresholds should be edited and manipulated as needed per persona.
+    # Eventually, the thresholds need to scale inversely proportionally to the number of words in a given message. So if a user asks a question that's only 
+    # 3 words, for example, then the threshold should be higher because that requires a more specific answer. For longer messages, the threshold should 
+    # become smaller with scale, because the bot is less likely to find a matching response for longer sequences.
+
+
     lastVal = 0
     comparedVal = 0
     matchingStatement = ""
     threshold = .99
     matchingStatementResponse = ""
-    if not response_found:
+    if not response_found and not default_eliminated:
         threshold = .99
         for each in texts_all['greetings']:
             message = message.lower()
@@ -547,8 +581,9 @@ def searchDatabase(message, text_database_to_search, db_name):
                 else:
                     # print("\n\tScanning other databases..")
                     response_found = False
+                    default_eliminated = True
                     pass
-    if not response_found:
+    if not response_found and not default_eliminated:
         threshold = .99
         for each in texts_all['salutations']:
             # compareSimilarities(message, each[0])
@@ -577,6 +612,7 @@ def searchDatabase(message, text_database_to_search, db_name):
                 else:
                     # print("\n\tScanning other databases..")
                     response_found = False
+                    default_eliminated = True
                     pass
     if not response_found:
         threshold = .99
@@ -607,6 +643,8 @@ def searchDatabase(message, text_database_to_search, db_name):
                     response_found = False
                     pass
                 # getInput()
+    # If resposne can't be found in matching database, just look through everything.
+    # For now, it looks through "all" the texts, but eventually, it should look for second, third, or even fourth and fifth closest matching text / conversation.
     if not response_found:
         threshold = .99
         for each in texts_all['all']:
