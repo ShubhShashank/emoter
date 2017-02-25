@@ -51,7 +51,13 @@ class Emote(object):
                  ):
 
         self.train = train
+
+        # PLACE THE TRAINING DATA (TUPLES) IN SELF.TRAIN BELOW
+
         self.train = []
+
+        #
+
 
         self.message = message
         self.punctCountDict = punctCountDict
