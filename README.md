@@ -68,7 +68,7 @@ python -m textblob.download_corpora
 ```
 Because GitHub has a file upload limitation, and to save space, I've uploaded a pickled version of the probability classifier, so that it doesn't have to rebuild every time Emote is reloaded. 
 
-[https://www.mediafire.com/?c18ll802ynb7s3c](http://www.mediafire.com/file/c18ll802ynb7s3c/base_corpus.pickle"Download pickled classifier")
+[http://www.mediafire.com/file/c18ll802ynb7s3c/base_corpus.pickle](http://www.mediafire.com/file/c18ll802ynb7s3c/base_corpus.pickle"Download pickled classifier")
 
 Put the pickle file in the /data directory of Emoter, or build it yourself with your own database by running emote.py. 
 
