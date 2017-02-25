@@ -68,7 +68,7 @@ python -m textblob.download_corpora
 ```
 Because GitHub has a file upload limitation, and to save space, I've uploaded a pickled version of the probability classifier, so that it doesn't have to rebuild every time Emote is reloaded. 
 
-[https://www.mediafire.com/?c18ll802ynb7s3c](https://www.mediafire.com/?c18ll802ynb7s3c"Download pickled classifier")
+[https://www.mediafire.com/?c18ll802ynb7s3c](http://www.mediafire.com/file/c18ll802ynb7s3c/base_corpus.pickle"Download pickled classifier")
 
 Put the pickle file in the /data directory of Emoter, or build it yourself with your own database by running emote.py. 
 
@@ -152,6 +152,7 @@ Follow this quick visual guide to understand how the base corpus has been traine
 
 Also, see the file 'alice_classification_training_sample.txt' to see passages from Alice in Wonderland classified through with Emote's tones.
 
+Right now, you have to copy and paste all the training data (structured as tuples) into the list varible 'self.train' in emote.py, if you are building your own corpus or expanding the base knowledge. Taking in the tuples from a text file was giving me unicode errors; must fix this later. 
 
 ### Current Limitations
 
